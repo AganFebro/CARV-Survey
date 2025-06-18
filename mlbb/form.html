@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Tournament Form</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Registration Form Section -->
+    <section class="py-12">
+        <div class="container mx-auto max-w-md bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-center mb-6">Register Now</h2>
+            <form id="registrationForm" class="space-y-4">
+                <!-- Discord Username -->
+                <div>
+                    <label for="discordUsername" class="block text-sm font-medium text-gray-700">Discord Username</label>
+                    <input type="text" id="discordUsername" name="discordUsername" placeholder="@YourDiscordUsername" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+                <!-- Mobile Legend ID -->
+                <div>
+                    <label for="mlID" class="block text-sm font-medium text-gray-700">Mobile Legend ID</label>
+                    <input type="text" id="mlID" name="mlID" placeholder="Your Mobile Legend ID" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+                <!-- Mobile Legend Nickname -->
+                <div>
+                    <label for="mlNickname" class="block text-sm font-medium text-gray-700">Mobile Legend Nickname</label>
+                    <input type="text" id="mlNickname" name="mlNickname" placeholder="Your ML Nickname" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+                <!-- Submit Button -->
+                <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Authentication Check Script -->
+    <script>
+        // Check if user is authenticated by verifying sessionStorage
+        const isAuthenticated = sessionStorage.getItem("authenticated");
+
+        if (isAuthenticated !== "true") {
+            // Redirect to index.html if the user is not authenticated
+            Swal.fire({
+                icon: 'error',
+                title: 'Unauthorized Access',
+                text: 'You are not authorized to access this page. Redirecting...',
+            }).then(() => {
+                window.location.href = "index.html"; // Redirect to index page
+            });
+        }
+    </script>
+</body>
+</html>
