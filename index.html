@@ -1125,7 +1125,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Configuration - Set to false to disable date restriction
             const config = {
-                enableDateRestriction: true,
+                enableDateRestriction: false,
                 animateOnScroll: true,
                 smoothScrolling: true
             };
@@ -1287,23 +1287,17 @@
                     feedback: document.getElementById('feedback').value || 'No feedback provided'
                 };
 
-                const formDataObj = new FormData();
-                formDataObj.append('discord', formData.discord);
-                formDataObj.append('uidCarv', formData.uidCarv);
-                formDataObj.append('walletAddress', formData.walletAddress);
-                formDataObj.append('gamenight', formData.gamenight);
-                formDataObj.append('guardian', formData.guardian);
-                formDataObj.append('region', formData.region);
-                formDataObj.append('games', formData.games);
-                formDataObj.append('carvpass', formData.carvpass);
-                formDataObj.append('infiniteplay', formData.infiniteplay);
-                formDataObj.append('events', formData.events);
-                formDataObj.append('feedback', formData.feedback);
+                const data = new URLSearchParams();
+                for (const key in formData) {
+                    data.append(key, formData[key]);
+                }
+
 
                 fetch(scriptURL, {
                     method: 'POST',
-                    body: formDataObj,
-                    mode: 'no-cors' // This helps with CORS issues
+                    body: data,
+                    headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded' } // This helps with CORS issues
                 })
                 .then(response => {
                     console.log("Response received");
