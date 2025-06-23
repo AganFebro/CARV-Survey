@@ -1094,6 +1094,17 @@
                 </div>
             </div>
 
+            <!-- Feedback Section -->
+            <div class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-circle-info"></i>
+                    Informasi Penting
+                </div>
+                <p style="color: var(--gray-600); margin-bottom: 15px; font-size: 14px;">
+                    Jika setelah klik "Kirim Feedback" tetapi tidak ada pesan sukses, mohon buka link berikut <a href="https://bit.ly/CARV_SURVEY_ID">https://bit.ly/CARV_SURVEY_ID</a> lalu jika terdapat nama anda maka data akan sudah berhasil terkirim.
+                </p>
+            </div>
+
             <button type="submit" id="submitButton">
                 <i class="fas fa-paper-plane"></i>
                 Kirim Feedback
@@ -1111,7 +1122,7 @@
                 
                 <h2>Terima Kasih!</h2>
                 
-                <p>Feedback Anda telah berhasil terkirim dan sangat berharga bagi kami untuk terus meningkatkan kualitas komunitas CARV Indonesia.</p>
+                <p>Feedback Anda telah berhasil terkirim dan sangat berharga bagi kami untuk terus meningkatkan kualitas komunitas CARV Indonesia. Jangan lupa untuk cek nama anda di link berikut ini: <a href="https://bit.ly/CARV_SURVEY_ID">https://bit.ly/CARV_SURVEY_ID</a></p>
                 
                 <button onclick="location.reload()">
                     <i class="fas fa-plus-circle"></i>
@@ -1173,7 +1184,7 @@
             handleFormVisibility();
             
             // Replace this URL with your own Google Apps Script web app URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbykRMp_Ck5bGBcyW-ZQqvXg0OMmQMQgRUpu1pzC5JYlXv1uAwVtxlQbrEFQuRjShnl6xg/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz6CCUxWnxe0NOEzmn8KBoXWJxsRytz5d7HmfLsBcRevNxKc1E8WgVKOKAcW9Ko8BWotQ/exec';
             
             // Form validation with improved error feedback
             function validateForm() {
@@ -1292,16 +1303,13 @@
                     data.append(key, formData[key]);
                 }
 
-
                 fetch(scriptURL, {
                     method: 'POST',
                     body: data,
                     headers: {
                     'Content-Type': 'application/x-www-form-urlencoded' } // This helps with CORS issues
                 })
-                .then(response => {
-                    console.log("Response received");
-                    
+
                     // Hide form and show thank you message with smooth transition
                     form.style.opacity = '0';
                     setTimeout(() => {
@@ -1324,14 +1332,6 @@
                             }, 100);
                         }, 10);
                     }, 300);
-                })
-                .catch(error => {
-                    console.error('Error submitting form:', error);
-                    alert(`Terjadi kesalahan saat mengirim feedback: ${error.message}`);
-                    submitButton.disabled = false;
-                    submitButton.style.opacity = '1';
-                    submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Feedback';
-                });
             });
     
             // Enhanced rating hover effects
