@@ -1173,7 +1173,7 @@
             handleFormVisibility();
             
             // Replace this URL with your own Google Apps Script web app URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbykRMp_Ck5bGBcyW-ZQqvXg0OMmQMQgRUpu1pzC5JYlXv1uAwVtxlQbrEFQuRjShnl6xg/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz6CCUxWnxe0NOEzmn8KBoXWJxsRytz5d7HmfLsBcRevNxKc1E8WgVKOKAcW9Ko8BWotQ/exec';
             
             // Form validation with improved error feedback
             function validateForm() {
@@ -1303,7 +1303,7 @@
                 fetch(scriptURL, {
                     method: 'POST',
                     body: formDataObj,
-                    mode: 'no-cors' // This helps with CORS issues
+                    mode: 'cors' // This helps with CORS issues
                 })
                 .then(response => {
                     console.log("Response received");
