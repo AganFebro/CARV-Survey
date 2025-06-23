@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARV Indonesia Monthly Feedback</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #6247aa;
+            --primary-light: #8465e5;
+            --primary-dark: #4a3582;
+            --secondary: #FF6B6B;
+            --light: #F5F5F7;
+            --dark: #272343;
+            --gray-100: #f0f2f5;
+            --gray-200: #e4e7ed;
+            --gray-300: #d6d9e0;
+            --gray-400: #bdc3cf;
+            --gray-500: #9da5b4;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343A40;
+            --gray-900: #212529;
+            --success: #06D6A0;
+            --error: #EF476F;
+            --warning: #FCBF49;
+            --info: #4CC9F0;
+            --background: #f0f2f7;
+            --card-bg: #fbfbfd;
+            --card-border: rgba(0, 0, 0, 0.06);
+            --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-default: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-slow: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.05), 0 5px 10px rgba(0,0,0,0.03);
+            --shadow-hover: 0 14px 28px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: background-color var(--transition-default);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            transition: box-shadow var(--transition-default), transform var(--transition-default);
+        }
+        
+        .container:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            position: relative;
+            transition: all var(--transition-default);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: var(--card-bg);
+            border-radius: 50% 50% 0 0;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 32px;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+        }
+
+        /* Add this to your existing styles */
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+/* Make the logo appear properly on mobile too */
+@media (max-width: 480px) {
+    .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+        /* Date restriction message styles */
+        .date-restriction-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            animation: fadeIn 0.5s ease-out;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            margin: 20px auto;
+        }
+        
+        .calendar-icon {
+            font-size: 60px;
+            color: var(--info);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        form {
+            padding: 30px 40px 40px;
+        }
+
+        .form-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--card-border);
+            transition: transform var(--transition-default), box-shadow var(--transition-default);
+        }
+
+        .form-section:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-500);
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            transition: all var(--transition-default);
+            -webkit-appearance: none; /* Improves iOS styling */
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            padding: 15px;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(98, 71, 170, 0.15);
+            outline: none;
+            background-color: #fff;
+        }
+
+        .rating-group {
+            margin-bottom: 30px;
+        }
+
+        .rating-title {
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--gray-700);
+            font-size: 16px;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .rating-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            flex: 1;
+            transition: transform var(--transition-default);
+            position: relative;
+            z-index: 1;
+        }
+
+        .rating-label:hover {
+            transform: translateY(-3px);
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating-circle {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            font-weight: 600;
+            transition: all var(--transition-default);
+            font-size: 18px;
+            color: var(--gray-600);
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rating-circle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary);
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: -1;
+        }
+
+        .rating-label:hover .rating-circle {
+            border-color: var(--primary-light);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .rating input[type="radio"]:checked + .rating-circle {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(98, 71, 170, 0.3);
+        }
+        
+        .rating input[type="radio"]:checked + .rating-circle::before {
+            transform: translateY(0);
+        }
+
+        .rating-text {
+            font-size: 13px;
+            color: var(--gray-600);
+            text-align: center;
+            margin-top: 5px;
+            transition: all 0.3s;
+            line-height: 1.4;
+        }
+
+        .rating input[type="radio"]:checked ~ .rating-text {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-default);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(98, 71, 170, 0.3);
+        }
+
+        button:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(98, 71, 170, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(98, 71, 170, 0.2);
+        }
+        
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+            transform: translateX(-100%);
+        }
+        
+        button:hover::after {
+            animation: btnShine 1.5s infinite;
+        }
+        
+        @keyframes btnShine {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .thank-you {
+            display: none;
+            text-align: center;
+            padding: 40px 30px;
+            animation: fadeIn var(--transition-default) ease-out;
+            background: var(--card-bg);
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+
+        .thank-you-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .thank-you-icon {
+            font-size: 70px;
+            color: var(--success);
+            margin-bottom: 25px;
+            animation: thankYouPulse 2.5s infinite;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+            width: 120px;
+            background-color: rgba(6, 214, 160, 0.1);
+            border-radius: 50%;
+            box-shadow: 0 0 0 10px rgba(6, 214, 160, 0.05);
+        }
+
+        .thank-you h2 {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            animation: fadeInUp 0.6s 0.2s forwards;
+            opacity: 0;
+        }
+
+        .thank-you p {
+            color: var(--gray-700);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.6s 0.4s forwards;
+            opacity: 0;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .thank-you button {
+            margin-top: 10px;
+            animation: fadeInUp 0.6s 0.6s forwards;
+            opacity: 0;
+            width: auto;
+            padding-left: 30px;
+            padding-right: 30px;
+            display: inline-flex;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .decoration-dots {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .dots-top-right {
+            top: -20px;
+            right: -30px;
+            background: radial-gradient(circle, var(--primary-light) 2px, transparent 3px);
+            background-size: 15px 15px;
+            animation: floatAnimation 8s infinite alternate;
+        }
+
+        .dots-bottom-left {
+            bottom: 40px;
+            left: -30px;
+            background: radial-gradient(circle, var(--success) 2px, transparent 3px);
+            background-size: 12px 12px;
+            animation: floatAnimation 6s infinite alternate-reverse;
+        }
+
+        @keyframes thankYouPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 10px rgba(6, 214, 160, 0.05); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(6, 214, 160, 0.08); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatAnimation {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(5px, 5px) rotate(5deg); }
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(98, 71, 170, 0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+            padding-left: 10px;
+            border-left: 3px solid var(--error);
+            animation: shake 0.3s ease;
+            transform-origin: left center;
+            opacity: 0;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+        
+        .error-message.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Reward banner styles */
+        .reward-banner {
+            background: linear-gradient(135deg, var(--info) 0%, #2A81EA 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(76, 201, 240, 0.15);
+        }
+        
+        .reward-banner i {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .reward-banner-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .reward-banner-text strong {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        /* Enhanced animations */
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 12px;
+            }
+            
+            header {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            form {
+                padding: 25px;
+            }
+            
+            .rating-circle {
+                width: 42px;
+                height: 42px;
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 16px;
+            }
+            
+            .form-section {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .rating-title {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .rating {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .rating-label {
+                flex: 0 0 48%;
+            }
+            
+            .rating-circle {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .rating-text {
+                font-size: 12px;
+            }
+            
+            button {
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            body {
+                padding: 15px 10px;
+            }
+            
+            .container {
+                border-radius: 14px;
+            }
+            
+            .rating {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .rating-label {
+                margin-bottom: 8px;
+            }
+            
+            form {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .rating-label {
+                flex: 0 0 100%;
+            }
+            
+            .rating-circle {
+                width: 36px;
+                height: 36px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            .description {
+                font-size: 14px;
+            }
+            
+            .form-section {
+                padding: 15px;
+            }
+            
+            .section-title {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+            
+            input[type="text"], textarea {
+                padding: 12px 15px 12px 40px;
+                font-size: 14px;
+            }
+            
+            button {
+                padding: 14px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+        body {
+            padding: 10px;
+        }
+        
+        .container {
+            border-radius: 10px;
+        }
+        
+        form {
+            padding: 20px 15px;
+        }
+        
+        .form-section {
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 20px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            font-size: 28px;
+        }
+        
+        .rating-title {
+            font-size: 15px;
+        }
+        
+        input[type="text"], textarea {
+            padding: 12px 15px 12px 40px;
+            font-size: 14px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+        }
+    }
+    
+    /* Fix for double stacked rating options on very small screens */
+    @media (max-width: 360px) {
+        .rating {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        
+        .rating-label {
+            flex: none;
+        }
+    }
+        
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .form-section:hover {
+                transform: none;
+                box-shadow: var(--shadow-sm);
+            }
+            
+            .rating-label:hover .rating-circle {
+                transform: none;
+                border-color: var(--gray-300);
+            }
+            
+            button:hover {
+                transform: none;
+                box-shadow: 0 4px 10px rgba(98, 71, 170, 0.3);
+            }
+            
+            button:hover::after {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><img src="carv.png" alt="CARV Logo"></div>
+            <h1>CARV Indonesia Monthly Feedback</h1>
+            <p class="description">Bantu kami meningkatkan komunitas dengan memberikan feedback Anda</p>
+        </header>
+
+        <!-- Add date restriction message -->
+        <div class="date-restriction-message" id="dateRestrictionMessage">
+            <div class="calendar-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h2>Form Belum Tersedia</h2>
+            <p>Form feedback hanya tersedia pada 7 hari terakhir setiap bulan. Silakan kembali nanti.</p>
+            <p id="nextAvailableDate" style="margin-top: 10px; font-weight: 500; color: var(--primary);"></p>
+        </div>
+
+        <form id="feedbackForm">
+            <!-- Reward Banner -->
+            <div class="reward-banner">
+                <i class="fas fa-gift"></i>
+                <div class="reward-banner-text">
+                    <strong>Dapatkan Reward!</strong><br>
+                    5 feedback terbaik akan mendapatkan hadiah sebesar <strong>250k IDR/TOKEN CARV</strong>.
+                </div>
+            </div>
+            
+            <!-- User Information Section -->
+            <div class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-user"></i>
+                    Informasi Pengguna
+                </div>
+                <div class="form-group">
+                    <label for="discord">Username Discord</label>
+                    <div class="input-group">
+                        <i class="fab fa-discord"></i>
+                        <input type="text" id="discord" name="discord" placeholder="Masukkan username Discord Anda" required>
+                    </div>
+                    <div class="error-message" id="discord-error">Username Discord wajib diisi</div>
+                </div>
+                
+                <!-- UID CARV Field -->
+                <div class="form-group">
+                    <label for="uidCarv">UID CARV</label>
+                    <div class="input-group">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="uidCarv" name="uidCarv" placeholder="Masukkan UID CARV Anda" required>
+                    </div>
+                    <div class="error-message" id="uidCarv-error">UID CARV wajib diisi</div>
+                </div>
+                
+                <!-- Wallet Address Field -->
+                <div class="form-group">
+                    <label for="walletAddress">Wallet Address</label>
+                    <div class="input-group">
+                        <i class="fas fa-wallet"></i>
+                        <input type="text" id="walletAddress" name="walletAddress" placeholder="Masukkan Wallet Address EVM Anda" required>
+                    </div>
+                    <div class="error-message" id="walletAddress-error">Wallet Address wajib diisi</div>
+                </div>
+            </div>
+
+            <!-- Rating Questions Section -->
+            <div class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-star"></i>
+                    Penilaian Kepuasan
+                </div>
+
+                <!-- Game Night Indonesia -->
+                <div class="rating-group">
+                    <div class="rating-title">Seberapa puas Anda dengan Game Night Indonesia?</div>
+                    <div class="rating">
+                        <label class="rating-label">
+                            <input type="radio" name="gamenight" value="1" required>
+                            <div class="rating-circle">1</div>
+                            <div class="rating-text">Sangat Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="gamenight" value="2">
+                            <div class="rating-circle">2</div>
+                            <div class="rating-text">Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="gamenight" value="3">
+                            <div class="rating-circle">3</div>
+                            <div class="rating-text">Cukup Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="gamenight" value="4">
+                            <div class="rating-circle">4</div>
+                            <div class="rating-text">Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="gamenight" value="5">
+                            <div class="rating-circle">5</div>
+                            <div class="rating-text">Sangat Puas</div>
+                        </label>
+                    </div>
+                    <div class="error-message" id="gamenight-error">Harap pilih rating</div>
+                </div>
+
+                <!-- Guardian Indonesia -->
+                <div class="rating-group">
+                    <div class="rating-title">Seberapa puas Anda dengan bantuan Guardian Indonesia?</div>
+                    <div class="rating">
+                        <label class="rating-label">
+                            <input type="radio" name="guardian" value="1" required>
+                            <div class="rating-circle">1</div>
+                            <div class="rating-text">Sangat Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="guardian" value="2">
+                            <div class="rating-circle">2</div>
+                            <div class="rating-text">Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="guardian" value="3">
+                            <div class="rating-circle">3</div>
+                            <div class="rating-text">Cukup Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="guardian" value="4">
+                            <div class="rating-circle">4</div>
+                            <div class="rating-text">Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="guardian" value="5">
+                            <div class="rating-circle">5</div>
+                            <div class="rating-text">Sangat Puas</div>
+                        </label>
+                    </div>
+                    <div class="error-message" id="guardian-error">Harap pilih rating</div>
+                </div>
+
+                <!-- Kualitas Region Indonesia -->
+                <div class="rating-group">
+                    <div class="rating-title">Seberapa puas Anda dengan kualitas region Indonesia?</div>
+                    <div class="rating">
+                        <label class="rating-label">
+                            <input type="radio" name="region" value="1" required>
+                            <div class="rating-circle">1</div>
+                            <div class="rating-text">Sangat Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="region" value="2">
+                            <div class="rating-circle">2</div>
+                            <div class="rating-text">Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="region" value="3">
+                            <div class="rating-circle">3</div>
+                            <div class="rating-text">Cukup Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="region" value="4">
+                            <div class="rating-circle">4</div>
+                            <div class="rating-text">Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="region" value="5">
+                            <div class="rating-circle">5</div>
+                            <div class="rating-text">Sangat Puas</div>
+                        </label>
+                    </div>
+                    <div class="error-message" id="region-error">Harap pilih rating</div>
+                </div>
+
+                <!-- Pilihan Game GN Indonesia -->
+                <div class="rating-group">
+                    <div class="rating-title">Seberapa puas Anda dengan pilihan game-game GN Indonesia?</div>
+                    <div class="rating">
+                        <label class="rating-label">
+                            <input type="radio" name="games" value="1" required>
+                            <div class="rating-circle">1</div>
+                            <div class="rating-text">Sangat Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="games" value="2">
+                            <div class="rating-circle">2</div>
+                            <div class="rating-text">Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="games" value="3">
+                            <div class="rating-circle">3</div>
+                            <div class="rating-text">Cukup Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="games" value="4">
+                            <div class="rating-circle">4</div>
+                            <div class="rating-text">Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="games" value="5">
+                            <div class="rating-circle">5</div>
+                            <div class="rating-text">Sangat Puas</div>
+                        </label>
+                    </div>
+                    <div class="error-message" id="games-error">Harap pilih rating</div>
+                </div>
+
+                <!-- CARV Pass -->
+                <div class="rating-group">
+                    <div class="rating-title">Seberapa puas Anda dengan CARV Pass?</div>
+                    <div class="rating">
+                        <label class="rating-label">
+                            <input type="radio" name="carvpass" value="1" required>
+                            <div class="rating-circle">1</div>
+                            <div class="rating-text">Sangat Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="carvpass" value="2">
+                            <div class="rating-circle">2</div>
+                            <div class="rating-text">Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="carvpass" value="3">
+                            <div class="rating-circle">3</div>
+                            <div class="rating-text">Cukup Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="carvpass" value="4">
+                            <div class="rating-circle">4</div>
+                            <div class="rating-text">Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="carvpass" value="5">
+                            <div class="rating-circle">5</div>
+                            <div class="rating-text">Sangat Puas</div>
+                        </label>
+                    </div>
+                    <div class="error-message" id="carvpass-error">Harap pilih rating</div>
+                </div>
+
+                <!-- Infinite Play -->
+                <div class="rating-group">
+                    <div class="rating-title">Seberapa puas Anda dengan Infinite Play?</div>
+                    <div class="rating">
+                        <label class="rating-label">
+                            <input type="radio" name="infiniteplay" value="1" required>
+                            <div class="rating-circle">1</div>
+                            <div class="rating-text">Sangat Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="infiniteplay" value="2">
+                            <div class="rating-circle">2</div>
+                            <div class="rating-text">Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="infiniteplay" value="3">
+                            <div class="rating-circle">3</div>
+                            <div class="rating-text">Cukup Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="infiniteplay" value="4">
+                            <div class="rating-circle">4</div>
+                            <div class="rating-text">Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="infiniteplay" value="5">
+                            <div class="rating-circle">5</div>
+                            <div class="rating-text">Sangat Puas</div>
+                        </label>
+                    </div>
+                    <div class="error-message" id="infiniteplay-error">Harap pilih rating</div>
+                </div>
+
+                <!-- Event CARV Play -->
+                <div class="rating-group">
+                    <div class="rating-title">Seberapa puas Anda dengan event-event di CARV Play?</div>
+                    <div class="rating">
+                        <label class="rating-label">
+                            <input type="radio" name="events" value="1" required>
+                            <div class="rating-circle">1</div>
+                            <div class="rating-text">Sangat Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="events" value="2">
+                            <div class="rating-circle">2</div>
+                            <div class="rating-text">Tidak Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="events" value="3">
+                            <div class="rating-circle">3</div>
+                            <div class="rating-text">Cukup Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="events" value="4">
+                            <div class="rating-circle">4</div>
+                            <div class="rating-text">Puas</div>
+                        </label>
+                        <label class="rating-label">
+                            <input type="radio" name="events" value="5">
+                            <div class="rating-circle">5</div>
+                            <div class="rating-text">Sangat Puas</div>
+                        </label>
+                    </div>
+                    <div class="error-message" id="events-error">Harap pilih rating</div>
+                </div>
+            </div>
+
+            <!-- Feedback Section -->
+            <div class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-comment"></i>
+                    Feedback Tambahan
+                </div>
+                <p style="color: var(--gray-600); margin-bottom: 15px; font-size: 14px;">
+                    Kami sangat menghargai pendapat Anda. Tolong luangkan waktu sebentar untuk memberikan feedback dan saran Anda tentang produk/layanan kami. Masukan Anda sangat berharga bagi kami untuk terus meningkatkan.
+                </p>
+                <div class="form-group">
+                    <textarea id="feedback" name="feedback" placeholder="Berikan saran, kritik, atau feedback anda disini"></textarea>
+                </div>
+            </div>
+
+            <button type="submit" id="submitButton">
+                <i class="fas fa-paper-plane"></i>
+                Kirim Feedback
+            </button>
+        </form>
+
+        <div class="thank-you" id="thankYou">
+            <div class="thank-you-container">
+                <div class="decoration-dots dots-top-right"></div>
+                <div class="decoration-dots dots-bottom-left"></div>
+                
+                <div class="thank-you-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                
+                <h2>Terima Kasih!</h2>
+                
+                <p>Feedback Anda telah berhasil terkirim dan sangat berharga bagi kami untuk terus meningkatkan kualitas komunitas CARV Indonesia.</p>
+                
+                <button onclick="location.reload()">
+                    <i class="fas fa-plus-circle"></i>
+                    Kirim Feedback Baru
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuration - Set to false to disable date restriction
+            const config = {
+                enableDateRestriction: true,
+                animateOnScroll: true,
+                smoothScrolling: true
+            };
+
+            const form = document.getElementById('feedbackForm');
+            const thankYou = document.getElementById('thankYou');
+            const submitButton = document.getElementById('submitButton');
+            const dateRestrictionMessage = document.getElementById('dateRestrictionMessage');
+            const nextAvailableDate = document.getElementById('nextAvailableDate');
+            
+            // Function to check if current date is within last 7 days of the month
+            function isWithinLastSevenDays() {
+                const today = new Date();
+                const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+                const currentDay = today.getDate();
+                
+                return currentDay > (lastDay - 7);
+            }
+
+            // Function to get the next available date text
+            function getNextAvailableDate() {
+                const today = new Date();
+                const nextMonth = new Date(today.getFullYear(), today.getMonth() + (isWithinLastSevenDays() ? 1 : 0) + 1, 0);
+                const startDay = nextMonth.getDate() - 6;
+                const startDate = new Date(nextMonth.getFullYear(), nextMonth.getMonth(), startDay);
+                
+                // Format date to Indonesian format
+                const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                return `Tersedia mulai: ${startDate.toLocaleDateString('id-ID', options)}`;
+            }
+
+            // Handle form visibility based on date restriction
+            function handleFormVisibility() {
+                if (config.enableDateRestriction && !isWithinLastSevenDays()) {
+                    form.style.display = 'none';
+                    dateRestrictionMessage.style.display = 'block';
+                    nextAvailableDate.textContent = getNextAvailableDate();
+                } else {
+                    form.style.display = 'block';
+                    dateRestrictionMessage.style.display = 'none';
+                }
+            }
+
+            // Check form visibility on page load
+            handleFormVisibility();
+            
+            // Replace this URL with your own Google Apps Script web app URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbykRMp_Ck5bGBcyW-ZQqvXg0OMmQMQgRUpu1pzC5JYlXv1uAwVtxlQbrEFQuRjShnl6xg/exec';
+            
+            // Form validation with improved error feedback
+            function validateForm() {
+                let isValid = true;
+                
+                // Check Discord username
+                const discordInput = document.getElementById('discord');
+                const discordError = document.getElementById('discord-error');
+                if(!discordInput.value.trim()) {
+                    showError(discordError);
+                    animateShake(discordInput);
+                    isValid = false;
+                } else {
+                    hideError(discordError);
+                }
+                
+                // Check UID CARV
+                const uidCarvInput = document.getElementById('uidCarv');
+                const uidCarvError = document.getElementById('uidCarv-error');
+                if(!uidCarvInput.value.trim()) {
+                    showError(uidCarvError);
+                    animateShake(uidCarvInput);
+                    isValid = false;
+                } else {
+                    hideError(uidCarvError);
+                }
+                
+                // Check Wallet Address
+                const walletAddressInput = document.getElementById('walletAddress');
+                const walletAddressError = document.getElementById('walletAddress-error');
+                if(!walletAddressInput.value.trim()) {
+                    showError(walletAddressError);
+                    animateShake(walletAddressInput);
+                    isValid = false;
+                } else {
+                    hideError(walletAddressError);
+                }
+    
+                // Check all rating groups
+                ['gamenight', 'guardian', 'region', 'games', 'carvpass', 'infiniteplay', 'events'].forEach(group => {
+                    const selected = document.querySelector(`input[name="${group}"]:checked`);
+                    const errorElement = document.getElementById(`${group}-error`);
+                    if(!selected) {
+                        showError(errorElement);
+                        const ratingGroup = errorElement.closest('.rating-group');
+                        animateShake(ratingGroup);
+                        isValid = false;
+                    } else {
+                        hideError(errorElement);
+                    }
+                });
+    
+                return isValid;
+            }
+            
+            // Helper functions for error handling
+            function showError(element) {
+                element.style.display = 'block';
+                element.classList.add('show');
+                setTimeout(() => {
+                    element.classList.remove('show');
+                }, 300);
+            }
+            
+            function hideError(element) {
+                element.style.display = 'none';
+                element.classList.remove('show');
+            }
+            
+            function animateShake(element) {
+                element.style.animation = 'none';
+                setTimeout(() => {
+                    element.style.animation = 'shake 0.5s ease';
+                }, 10);
+            }
+    
+            // Submit form handler with improved transitions
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if(!validateForm()) {
+                    // Scroll to first error with smooth behavior
+                    const firstError = document.querySelector('.error-message[style="display: block;"]');
+                    if(firstError) {
+                        const errorOffset = firstError.getBoundingClientRect().top + window.pageYOffset - 100;
+                        window.scrollTo({
+                            top: errorOffset,
+                            behavior: config.smoothScrolling ? 'smooth' : 'auto'
+                        });
+                    }
+                    return;
+                }
+    
+                // Update only the submit button to show loading state
+                submitButton.disabled = true;
+                submitButton.style.opacity = '0.7';
+                submitButton.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Mengirim...';
+    
+                // Collect form data
+                const formData = {
+                    discord: document.getElementById('discord').value,
+                    uidCarv: document.getElementById('uidCarv').value,
+                    walletAddress: document.getElementById('walletAddress').value,
+                    gamenight: document.querySelector('input[name="gamenight"]:checked').value,
+                    guardian: document.querySelector('input[name="guardian"]:checked').value,
+                    region: document.querySelector('input[name="region"]:checked').value,
+                    games: document.querySelector('input[name="games"]:checked').value,
+                    carvpass: document.querySelector('input[name="carvpass"]:checked').value,
+                    infiniteplay: document.querySelector('input[name="infiniteplay"]:checked').value,
+                    events: document.querySelector('input[name="events"]:checked').value,
+                    feedback: document.getElementById('feedback').value || 'No feedback provided'
+                };
+
+                const formDataObj = new FormData();
+                formDataObj.append('discord', formData.discord);
+                formDataObj.append('uidCarv', formData.uidCarv);
+                formDataObj.append('walletAddress', formData.walletAddress);
+                formDataObj.append('gamenight', formData.gamenight);
+                formDataObj.append('guardian', formData.guardian);
+                formDataObj.append('region', formData.region);
+                formDataObj.append('games', formData.games);
+                formDataObj.append('carvpass', formData.carvpass);
+                formDataObj.append('infiniteplay', formData.infiniteplay);
+                formDataObj.append('events', formData.events);
+                formDataObj.append('feedback', formData.feedback);
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: formDataObj,
+                    mode: 'no-cors' // This helps with CORS issues
+                })
+                .then(response => {
+                    console.log("Response received");
+                    
+                    // Hide form and show thank you message with smooth transition
+                    form.style.opacity = '0';
+                    setTimeout(() => {
+                        form.style.display = 'none';
+                        thankYou.style.display = 'block';
+                        thankYou.style.opacity = '0';
+                        setTimeout(() => {
+                            thankYou.style.opacity = '1';
+                            
+                            // Add a small delay before scrolling to ensure smooth animation
+                            setTimeout(() => {
+                                // Scroll to thank you message with offset for better positioning
+                                const offset = window.innerHeight / 2 - thankYou.offsetHeight / 2;
+                                const scrollTarget = thankYou.getBoundingClientRect().top + window.pageYOffset - (offset > 0 ? offset : 100);
+                                
+                                window.scrollTo({
+                                    top: scrollTarget,
+                                    behavior: config.smoothScrolling ? 'smooth' : 'auto'
+                                });
+                            }, 100);
+                        }, 10);
+                    }, 300);
+                })
+                .catch(error => {
+                    console.error('Error submitting form:', error);
+                    alert(`Terjadi kesalahan saat mengirim feedback: ${error.message}`);
+                    submitButton.disabled = false;
+                    submitButton.style.opacity = '1';
+                    submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Feedback';
+                });
+            });
+    
+            // Enhanced rating hover effects
+            document.querySelectorAll('.rating-label').forEach(label => {
+                label.addEventListener('mouseenter', function() {
+                    if (window.matchMedia('(hover: hover)').matches) {
+                        this.querySelector('.rating-circle').style.transform = 'scale(1.05)';
+                    }
+                });
+                
+                label.addEventListener('mouseleave', function() {
+                    if(!this.querySelector('input').checked && window.matchMedia('(hover: hover)').matches) {
+                        this.querySelector('.rating-circle').style.transform = 'scale(1)';
+                    }
+                });
+                
+                // Add touch feedback for mobile
+                label.addEventListener('touchstart', function() {
+                    this.querySelector('.rating-circle').style.transform = 'scale(1.05)';
+                });
+                
+                label.addEventListener('touchend', function() {
+                    if(!this.querySelector('input').checked) {
+                        setTimeout(() => {
+                            this.querySelector('.rating-circle').style.transform = 'scale(1)';
+                        }, 200);
+                    }
+                });
+            });
+    
+            // Improved responsive handling
+            function handleResponsive() {
+                const screenWidth = window.innerWidth;
+                document.documentElement.style.setProperty('--viewport-width', `${screenWidth}px`);
+                
+                // Add animations to form sections for better UX
+                if (config.animateOnScroll) {
+                    setupScrollAnimations();
+                }
+            }
+            
+            // Adds reveal animations to elements as they scroll into view
+            function setupScrollAnimations() {
+                if ('IntersectionObserver' in window) {
+                    const sections = document.querySelectorAll('.form-section, header, .reward-banner');
+                    
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.style.animation = 'floatIn 0.6s ease-out forwards';
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    });
+                    
+                    sections.forEach(section => {
+                        section.style.opacity = '0';
+                        observer.observe(section);
+                    });
+                }
+            }
+    
+            window.addEventListener('resize', handleResponsive);
+            handleResponsive();
+            
+            // Improve touch response on mobile
+            document.addEventListener('touchstart', function() {
+                // This empty handler enables :active CSS states on iOS
+            }, false);
+        });
+    </script>
+</body>
+</html>
