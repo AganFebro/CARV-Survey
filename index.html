@@ -1013,39 +1013,6 @@
                     <div class="error-message" id="carvpass-error">Harap pilih rating</div>
                 </div>
 
-                <!-- Infinite Play -->
-                <div class="rating-group">
-                    <div class="rating-title">Seberapa puas Anda dengan Infinite Play?</div>
-                    <div class="rating">
-                        <label class="rating-label">
-                            <input type="radio" name="infiniteplay" value="1" required>
-                            <div class="rating-circle">1</div>
-                            <div class="rating-text">Sangat Tidak Puas</div>
-                        </label>
-                        <label class="rating-label">
-                            <input type="radio" name="infiniteplay" value="2">
-                            <div class="rating-circle">2</div>
-                            <div class="rating-text">Tidak Puas</div>
-                        </label>
-                        <label class="rating-label">
-                            <input type="radio" name="infiniteplay" value="3">
-                            <div class="rating-circle">3</div>
-                            <div class="rating-text">Cukup Puas</div>
-                        </label>
-                        <label class="rating-label">
-                            <input type="radio" name="infiniteplay" value="4">
-                            <div class="rating-circle">4</div>
-                            <div class="rating-text">Puas</div>
-                        </label>
-                        <label class="rating-label">
-                            <input type="radio" name="infiniteplay" value="5">
-                            <div class="rating-circle">5</div>
-                            <div class="rating-text">Sangat Puas</div>
-                        </label>
-                    </div>
-                    <div class="error-message" id="infiniteplay-error">Harap pilih rating</div>
-                </div>
-
                 <!-- Event CARV Play -->
                 <div class="rating-group">
                     <div class="rating-title">Seberapa puas Anda dengan event-event di CARV Play?</div>
@@ -1101,7 +1068,7 @@
                     Informasi Penting
                 </div>
                 <p style="color: var(--gray-600); margin-bottom: 15px; font-size: 14px;">
-                    Jika setelah klik "Kirim Feedback" tetapi tidak ada pesan sukses, mohon buka link berikut <a href="https://bit.ly/CARV_ID_Agustus">https://bit.ly/CARV_ID_Agustus</a> lalu jika terdapat nama anda maka data akan sudah berhasil terkirim.
+                    Jika setelah klik "Kirim Feedback" tetapi tidak ada pesan sukses, mohon buka link berikut <a href="https://bit.ly/CARV_ID_SEPTEMBER">https://bit.ly/CARV_ID_SEPTEMBER</a> lalu jika terdapat nama anda maka data akan sudah berhasil terkirim.
                 </p>
             </div>
 
@@ -1122,7 +1089,7 @@
                 
                 <h2>Terima Kasih!</h2>
                 
-                <p>Feedback Anda telah berhasil terkirim dan sangat berharga bagi kami untuk terus meningkatkan kualitas komunitas CARV Indonesia. Jangan lupa untuk cek nama anda di link berikut ini: <a href="https://bit.ly/CARV_ID_Agustus">https://bit.ly/CARV_ID_Agustus</a></p>
+                <p>Feedback Anda telah berhasil terkirim dan sangat berharga bagi kami untuk terus meningkatkan kualitas komunitas CARV Indonesia. Jangan lupa untuk cek nama anda di link berikut ini: <a href="https://bit.ly/CARV_ID_SEPTEMBER">https://bit.ly/CARV_ID_SEPTEMBER</a></p>
                 
                 <button onclick="location.reload()">
                     <i class="fas fa-plus-circle"></i>
@@ -1184,7 +1151,7 @@
             handleFormVisibility();
             
             // Replace this URL with your own Google Apps Script web app URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbz6CCUxWnxe0NOEzmn8KBoXWJxsRytz5d7HmfLsBcRevNxKc1E8WgVKOKAcW9Ko8BWotQ/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxzbsZyjjk23i660awBc0D7AHCDZyFKwKc05hv8auYXpBaI2wRkwLpPbaOx7mIFyGc/exec';
             
             // Form validation with improved error feedback
             function validateForm() {
@@ -1224,7 +1191,7 @@
                 }
     
                 // Check all rating groups
-                ['gamenight', 'guardian', 'region', 'games', 'carvpass', 'infiniteplay', 'events'].forEach(group => {
+                ['gamenight', 'guardian', 'region', 'games', 'carvpass', 'events'].forEach(group => {
                     const selected = document.querySelector(`input[name="${group}"]:checked`);
                     const errorElement = document.getElementById(`${group}-error`);
                     if(!selected) {
@@ -1293,7 +1260,6 @@
                     region: document.querySelector('input[name="region"]:checked').value,
                     games: document.querySelector('input[name="games"]:checked').value,
                     carvpass: document.querySelector('input[name="carvpass"]:checked').value,
-                    infiniteplay: document.querySelector('input[name="infiniteplay"]:checked').value,
                     events: document.querySelector('input[name="events"]:checked').value,
                     feedback: document.getElementById('feedback').value || 'No feedback provided'
                 };
